@@ -5,14 +5,26 @@ var regexString = process.argv[3];
 http.get(url, (res) => {
   //console.log(`Got response: ${res.statusCode}`);
   res.setEncoding('utf8');
-  res.on("data",(data) => {
-	//console.log(data);
+  var html = "";
+  res.on('data',(data) => {
+    html+=data;
+  });
+  res.on('end',()=>{
+	  //console.log(html);
     //var regex = /\d+/g;
     var regex = new RegExp(regexString,"g");
-    data.match(regex).forEach((match) => {
+    //console.log(regex.exec(html));
+    //console.log(html.match(regex));
+    /*
+    while ((matchArray = regex.exec(html)) !== null) {
+      console.log(matchArray);
+    }
+    */   
+    html.match(regex).forEach((match) => {
      console.log(match);
     });
-    //console.log(data.match(/<img [^>]*\/>/gi));
+    
+    //console.log(html.match(/<img [^>]*\/>/gi));
   });
   // consume response body
   res.resume();
