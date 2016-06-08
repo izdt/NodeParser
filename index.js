@@ -15,15 +15,15 @@ http.get(url, (res) => {
     var regex = new RegExp(regexString,"g");
     //console.log(regex.exec(html));
     //console.log(html.match(regex));
-    /*
+    
     while ((matchArray = regex.exec(html)) !== null) {
-      console.log(matchArray);
+      console.log(matchArray[1]);
     }
-    */   
+    /*
     html.match(regex).forEach((match) => {
      console.log(match);
     });
-    
+    */
     //console.log(html.match(/<img [^>]*\/>/gi));
   });
   // consume response body
