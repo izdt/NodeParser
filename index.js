@@ -2,6 +2,14 @@ var http = require('http');
 var url = process.argv[2];
 var regexString = process.argv[3];
 //import http from 'http';
+var matchData = [];
+
+var showData = function(){
+    for(var i in matchData){
+      console.log(matchData[i]);
+    }
+};
+
 http.get(url, (res) => {
   //console.log(`Got response: ${res.statusCode}`);
   res.setEncoding('utf8');
@@ -15,10 +23,12 @@ http.get(url, (res) => {
     var regex = new RegExp(regexString,"g");
     //console.log(regex.exec(html));
     //console.log(html.match(regex));
-    
+
     while ((matchArray = regex.exec(html)) !== null) {
-      console.log(matchArray[1]);
+      //console.log(matchArray[1]);
+      matchData.push(matchArray[1]);
     }
+    showData();
     /*
     html.match(regex).forEach((match) => {
      console.log(match);
@@ -31,3 +41,4 @@ http.get(url, (res) => {
 }).on('error', (e) => {
   console.log(`Got error: ${e.message}`);
 });
+
