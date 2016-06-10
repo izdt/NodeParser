@@ -1,4 +1,5 @@
 var http = require('http');
+var imgSave = require('./imgSave');
 var url = process.argv[2];
 var regexString = process.argv[3];
 //import http from 'http';
