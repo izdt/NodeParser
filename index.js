@@ -4,12 +4,18 @@ var url = process.argv[2];
 var regexString = process.argv[3];
 //import http from 'http';
 var matchData = [];
-
+/*
 var showData = function(){
     for(var i in matchData){
       console.log(matchData[i]);
     }
 };
+*/
+var saveImgs = function(){
+    for(var i in matchData){
+      imgSave(matchData[i],i+".jpg");
+    }   
+}
 
 http.get(url, (res) => {
   //console.log(`Got response: ${res.statusCode}`);
@@ -29,7 +35,7 @@ http.get(url, (res) => {
       //console.log(matchArray[1]);
       matchData.push(matchArray[1]);
     }
-    showData();
+    //showData();
     /*
     html.match(regex).forEach((match) => {
      console.log(match);
