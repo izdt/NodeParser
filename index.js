@@ -4,16 +4,22 @@ var url = process.argv[2];
 var regexString = process.argv[3];
 //import http from 'http';
 var matchData = [];
-/*
+
 var showData = function(){
     for(var i in matchData){
       console.log(matchData[i]);
     }
 };
-*/
+
+regexString = regexString || "data-src=\"(http:\/\/crawling.*?)\"";
+
 var saveImgs = function(){
+    var imgDir = decodeURI(url.substr(url.indexOf('.net/')+5)).replace('/','');
     for(var i in matchData){
-      imgSave(matchData[i],i+".jpg");
+      var imgUrl = matchData[i];
+      var imgName = imgUrl.substr(imgUrl.lastIndexOf('/')+1);
+      console.log("save img:" + imgName)
+      imgSave(matchData[i], imgDir, imgName);
     }   
 }
 
@@ -36,6 +42,7 @@ http.get(url, (res) => {
       matchData.push(matchArray[1]);
     }
     //showData();
+    saveImgs();
     /*
     html.match(regex).forEach((match) => {
      console.log(match);

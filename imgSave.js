@@ -1,9 +1,15 @@
 var http = require('http');
 var fs = require('fs');
 
-var imgSave = function(url, name){
+var mkdirIfNotExits = function(dir){
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
+};
+
+var imgSave = function(url, dir, name){
     //sleep(500);
-    var dir = '../imgs'
+    var newDir = '../imgs/' + dir;
     http.get(url, function(res){
         res.setEncoding('binary');
         var data='';
@@ -11,7 +17,8 @@ var imgSave = function(url, name){
             data+=chunk;
         });
         res.on('end', function(){
-            fs.writeFile(dir + "/"+name, data, 'binary', function (err) {
+            mkdirIfNotExits(newDir);
+            fs.writeFile(newDir + "/"+name, data, 'binary', function (err) {
                 if (err) throw err;
                 console.log('file saved '+name);
             });
