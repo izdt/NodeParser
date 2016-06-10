@@ -10,6 +10,7 @@ var mkdirIfNotExits = function(dir){
 var imgSave = function(url, dir, name){
     //sleep(500);
     var newDir = '../imgs/' + dir;
+    if(fs.existsSync(newDir)) return;
     http.get(url, function(res){
         res.setEncoding('binary');
         var data='';

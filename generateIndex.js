@@ -12,7 +12,7 @@ var generateIndex = function(dir){
             var imgs = fs.readdirSync(dir+element);
             var html = "";
             imgs.forEach((item)=>{
-                var imgLine = `<img src="${item}" />`;
+                var imgLine = `<img src="${item}" width="100%"/>`;
                 html+=imgLine;
             });
             fs.writeFile(dir+element+'/index.html', html, (err) => {
