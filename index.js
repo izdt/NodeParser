@@ -27,10 +27,30 @@ var crawImgPage = function(matchData) {
     }
 };
 
-var crawList = function(){
-  var url = process.argv[2];
+var crawList = function(url){
+  //var url = process.argv[2];
   var listRegex = "class=\"post-title entry-title\">\\s+<a href=\"(.*?)\"";
   crawPage(url,listRegex,crawImgPage);
-}();
+};
 
+var batchCraw = function() {
+  var urls = process.argv[2].split(',');
+  var tUrls = [];
+  urls.forEach((u)=>{
+    tUrls.push(encodeURI("http://"+u+"/"));
+  });
+  //console.log(tUrls);
+  crawImgPage(tUrls);  
+};
+//batchCraw();
+
+ var url = process.argv[2];
+ crawList(url);
+
+/*
+for(var i=5;i<11;i++){
+   var url = process.argv[2];
+   crawList(url+"page/"+i+"/");
+}
+*/
 
