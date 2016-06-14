@@ -1,15 +1,15 @@
-var http = require('http');
-var imgSave = require('./imgSave');
-var crawPage = require('./crawPage');
+const http = require('http');
+const imgSave = require('./imgSave');
+const crawPage = require('./crawPage');
 
 
-var showData = function(matchData){
+const showData = function(matchData){
     for(var i in matchData){
       console.log(matchData[i]);
     }
 };
 
-var saveImgs = function(matchData,url){
+const saveImgs = function(matchData,url){
     //console.log(matchData);
     var imgDir = decodeURI(url.substr(url.indexOf('.net/')+5)).replace('/','');
     for(var i in matchData){
@@ -20,20 +20,20 @@ var saveImgs = function(matchData,url){
     }   
 };
 
-var crawImgPage = function(matchData) {
+const crawImgPage = function(matchData) {
     var imgRegex = "data-src=\"(http:\/\/crawling.*?)\"";
     for(var i in matchData){
       crawPage(matchData[i],imgRegex,saveImgs);
     }
 };
 
-var crawList = function(url){
+const crawList = function(url){
   //var url = process.argv[2];
   var listRegex = "class=\"post-title entry-title\">\\s+<a href=\"(.*?)\"";
   crawPage(url,listRegex,crawImgPage);
 };
 
-var batchCraw = function() {
+const batchCraw = function() {
   var urls = process.argv[2].split(',');
   var tUrls = [];
   urls.forEach((u)=>{
@@ -44,7 +44,7 @@ var batchCraw = function() {
 };
 //batchCraw();
 
- var url = process.argv[2];
+ const url = process.argv[2];
  crawList(url);
 
 /*
