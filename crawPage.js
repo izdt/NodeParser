@@ -1,15 +1,16 @@
-var http = require('http');
-var crawPage = function(url,regexString,callback){
-    var matchData = [];
+const http = require('http');
+const crawPage = function(url,regexString,callback){
+    let matchData = [];
     http.get(url, (res) => {
     //console.log(`Got response: ${res.statusCode}`);
     res.setEncoding('utf8');
-    var html = "";
+    let html = "";
     res.on('data',(data) => {
       html+=data;
     });
     res.on('end',()=>{
-      var regex = new RegExp(regexString,"g");
+      let regex = new RegExp(regexString,"g");
+      let matchArray;
       while ((matchArray = regex.exec(html)) !== null) {
         matchData.push(matchArray[1]);
       }
