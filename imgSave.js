@@ -1,19 +1,19 @@
-var http = require('http');
-var fs = require('fs');
+const http = require('http');
+const fs = require('fs');
 
-var mkdirIfNotExits = function(dir){
+const mkdirIfNotExits = function(dir){
     if (!fs.existsSync(dir)){
         fs.mkdirSync(dir);
     }
 };
 
-var imgSave = function(url, dir, name){
+const imgSave = function(url, dir, name){
     //sleep(500);
-    var newDir = '../imgs/' + dir;
+    let newDir = '../imgs/' + dir;
     if(fs.existsSync(newDir)) return;
     http.get(url, function(res){
         res.setEncoding('binary');
-        var data='';
+        let data='';
         res.on('data', function(chunk){
             data+=chunk;
         });
