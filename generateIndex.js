@@ -1,14 +1,14 @@
-var fs = require('fs');
-var dir = "../imgs/";
-var folders = [];
-var lessFolders = [];
+const fs = require('fs');
+const dir = "../imgs/";
+const folders = [];
+const lessFolders = [];
 
-var deleteFolder = function(path) {
-    var files = [];
+const deleteFolder = function(path) {
+    let files = [];
     if( fs.existsSync(path) ) {
         files = fs.readdirSync(path);
         files.forEach(function(file,index){
-            var curPath = path + "/" + file;
+            let curPath = path + "/" + file;
             if(fs.lstatSync(curPath).isDirectory()) { 
                 deleteFolder(curPath);
             } else { // delete file
@@ -19,16 +19,16 @@ var deleteFolder = function(path) {
     }
 };
 
-var generateIndex = function(dir){
-    var files = fs.readdirSync(dir);
-    folders = files;
+const generateIndex = function(dir){
+    let files = fs.readdirSync(dir);
+    let folders = files;
     folders.forEach((element)=>{
         if (fs.statSync(dir+element).isDirectory()){
-            var imgs = fs.readdirSync(dir+element);
+            let imgs = fs.readdirSync(dir+element);
             //if(imgs.length<10) lessFolders.push(element);
-            var html = "";
+            let html = "";
             imgs.forEach((item)=>{
-                var imgLine = `<img src="${item}" width="100%"/>`;
+                let imgLine = `<img src="${item}" width="100%"/>`;
                 html+=imgLine;
             });
             
