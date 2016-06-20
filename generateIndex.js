@@ -21,7 +21,7 @@ const deleteFolder = function(path) {
 
 const generateIndex = function(dir){
     let files = fs.readdirSync(dir);
-    folders = files;
+    let folders = files;
     folders.forEach((element)=>{
         if (fs.statSync(dir+element).isDirectory()){
             let imgs = fs.readdirSync(dir+element);
