@@ -34,7 +34,7 @@ const generateIndex = function(dir){
             
             fs.writeFile(dir+element+'/index.html', html, (err) => {
                 if (err) throw err;
-                console.log('It\'s saved!');
+                console.log('Index saved!');
             });
             
             //console.log(html);
