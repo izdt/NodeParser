@@ -21,7 +21,8 @@ const saveImgs = function(matchData,url){
 };
 
 const crawImgPage = function(matchData) {
-    let imgRegex = "data-src=\"(http:\/\/crawling.*?)\"";
+    //console.log(matchData);
+    let imgRegex = "src=\"(http:\/\/.*?)\" data-recalc-dims";
     for(let i in matchData){
       crawPage(matchData[i],imgRegex,saveImgs);
     }

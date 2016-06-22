@@ -13,6 +13,7 @@ const crawPage = function(url,regexString,callback){
       let matchArray;
       while ((matchArray = regex.exec(html)) !== null) {
         matchData.push(matchArray[1]);
+        //console.log(matchArray[1]);
       }
       callback(matchData,url);
     });
